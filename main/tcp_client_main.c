@@ -13,7 +13,7 @@ extern void tcp_client(char *);
 extern void tcp_client_2(void);
 extern int send_data(char *);
 
-
+// some comment because I forgot to make branch for this before !
 void app_main(void)
 {
     ESP_ERROR_CHECK(nvs_flash_init());
