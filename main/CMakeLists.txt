@@ -8,6 +8,9 @@ else()
     set(tcp_client_ip tcp_client_v6.c)
 endif()
 
+#REQUIRES bootloader_support
+#PRIV_REQUIRES bootloader_support
+
 idf_component_register(SRCS "tcp_client_v4.c" "tcp_client_main.c" "${tcp_client_ip}"
                                 INCLUDE_DIRS "."
                                 REQUIRES ${requires})

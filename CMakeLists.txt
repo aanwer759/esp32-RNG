@@ -9,6 +9,8 @@ if("${IDF_TARGET}" STREQUAL "linux")
     set(COMPONENTS main)
 endif()
 
+#requires (bootloader_support)
+
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
 project(tcp_client)
