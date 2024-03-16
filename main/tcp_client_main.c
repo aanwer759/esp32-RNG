@@ -31,7 +31,7 @@ static  char* TAG = "PRNG test";
 
 void app_main(void)
 {
-    int sample_size = 100 ;
+    int sample_size = 100;
     uint32_t rand_from_PRNG ;
     uint64_t before_time ;
     uint64_t after_time ;
