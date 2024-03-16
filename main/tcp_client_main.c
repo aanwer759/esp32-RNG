@@ -19,6 +19,8 @@
 #include <esp_random.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "hal/cpu_hal.h"
+#include "esp_timer.h"
 
 
 static  char* TAG = "PRNG test";
@@ -43,16 +45,30 @@ void app_main(void)
     //sprintf(text1,"%lu",rand_from_esp);
     //int ret = send_data(text1);
     //}
-    for (int i=0;i <=10000 ; i ++){
+
+    ESP_LOGI(TAG,"Enabling bootloader random entropy");
+    bootloader_random_enable();
+    
+        uint32_t rand_from_PRNG ;
+        uint64_t before_time ;
+        uint64_t after_time ;
+
+    for (int i=0;i <=100 ; i ++){
+
         
-        ESP_LOGI(TAG,"Enabling bootloader random entropy");
-        bootloader_random_enable();
-        uint32_t rand_from_PRNG = esp_random();
-        //
+        before_time = esp_timer_get_time();
+        rand_from_PRNG = esp_random();
+        after_time = esp_timer_get_time();
+        
+        ESP_LOGI(TAG,"%llu",before_time);
         ESP_LOGI(TAG,"%lu",rand_from_PRNG);
+        ESP_LOGI(TAG,"%llu",after_time);
+        ESP_LOGI(TAG,"%d",i);
         vTaskDelay(1);
 
 }
+    bootloader_random_disable();
+    ESP_LOGI(TAG,"Bootloader entropy disabled:");
 }
 
 
