@@ -83,6 +83,7 @@ void app_main(void)
     char text1[255];
     sprintf(text1,"%lu",random_number_collected[j]);
     int ret = send_data(text1);
+    vTaskDelay(10);
     }
 }
 
